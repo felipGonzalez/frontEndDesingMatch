@@ -90,12 +90,11 @@ import { DesingComponent } from './components/desing/desing.component';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    ScrollingModule
- 
-
+    ScrollingModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[LogComponent]
+  entryComponents:[LogComponent, DesingComponent]
 })
 export class AppModule { }

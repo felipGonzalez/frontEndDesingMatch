@@ -131,10 +131,7 @@ export class CompanyComponent implements OnInit {
   public  getUrl(url:string):string{
    
     return  `http://localhost:8080/desing/getImageDesing?data=${this.company.urlCompany}&data=${this.draftActually.idDraft}&data=${url}`;
-      
-    
-    //return Config.getInstance().getUrl() + "/getImg/" + id_usuario + titulo + ".png";
-  }
+   }
 
 
 

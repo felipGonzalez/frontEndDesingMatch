@@ -5,6 +5,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { ModelDraft } from 'src/app/models/ModelDraft';
 import { CreateDraftService } from './create-draft.service';
 import { OK } from 'src/app/models/httpStatus';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-draft',
@@ -31,7 +32,7 @@ export class CreateDraftComponent implements OnInit {
     Validators.maxLength(10)
   ]);
 
-  constructor(private router: Router, private darfServe: CreateDraftService) { 
+  constructor(private router: Router, private darfServe: CreateDraftService, private _snackBar: MatSnackBar) { 
     
     this.valid = true;
     
@@ -70,6 +71,7 @@ export class CreateDraftComponent implements OnInit {
           if(res.responseCode === OK) {
             sessionStorage.removeItem('draft');
             this.router.navigateByUrl('/company'); 
+            this.openSnackBar("Modificacion guardada", "ok");
         }else {
           this.valid = false;
           this.message = "Intentelo de nuevo en unos minutos";
@@ -81,6 +83,12 @@ export class CreateDraftComponent implements OnInit {
       this.valid = false;
       this.message = "Verifique todos los datos";
     }
+  }
+
+  public openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 

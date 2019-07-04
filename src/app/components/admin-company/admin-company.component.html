@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" >
 
     <div class="row bg bg-dark head">
         <div class="col-sm-12 col-md-8">
@@ -7,14 +7,15 @@
         <div class="col-sm-12 col-md-4"><button class="btn btn-outline-success btn-lg btn-block "
                 (click)="closeSesion()">Cerrar Sesión</button></div>
     </div>
-    
+
 
     <mat-progress-bar *ngIf="loadSpinner" mode="indeterminate"></mat-progress-bar>
     <br>
     <div class="bAdd">
-    <button mat-raised-button color="accent" [routerLink]="['/draft']" class="btn-lg" matTooltip="Agrega un nuevo proyecto" >
-        Agregar proyecto  <mat-icon id="add">add</mat-icon>
-    </button>
+        <button mat-raised-button color="accent" [routerLink]="['/draft']" class="btn-lg"
+            matTooltip="Agrega un nuevo proyecto">
+            Agregar proyecto <mat-icon id="add">add</mat-icon>
+        </button>
     </div>
     <br>
 
@@ -22,45 +23,42 @@
         <h2 class="text-center"> No hay proyectos disponibles, agregue una por favor </h2>
     </div>
     <div *ngIf="isload">
-            <mat-form-field>
-                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar por">
-                  </mat-form-field>
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar por">
+        </mat-form-field>
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-            <!--- Note that these columns can be defined in any order.
-                      The actual rendered columns are set as a property on the row definition" -->
-
-            <!-- Position Column -->
             <ng-container matColumnDef="idDraft">
                 <th mat-header-cell *matHeaderCellDef> No. </th>
                 <td mat-cell *matCellDef="let element"> {{element.idDraft}} </td>
             </ng-container>
 
-            <!-- Name Column -->
             <ng-container matColumnDef="nameDraft">
                 <th mat-header-cell *matHeaderCellDef> Proyecto </th>
                 <td mat-cell *matCellDef="let element"> {{element.nameDraft}} </td>
             </ng-container>
-            
 
-            <!-- Weight Column -->
+
             <ng-container matColumnDef="price">
                 <th mat-header-cell *matHeaderCellDef> Precio </th>
                 <td mat-cell *matCellDef="let element"> {{element.price}} </td>
             </ng-container>
 
-            <!-- Weight Column -->
+      
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef> Opciones </th>
                 <td mat-cell *matCellDef="let element">
                     <div class="group">
-                        <button mat-icon-button color="primary" (click)= "editDraft(element)" matTooltip="Editar" aria-label="Example icon-button with a heart icon">
+                        <button mat-icon-button color="primary" (click)="editDraft(element)" matTooltip="Editar"
+                            aria-label="Example icon-button with a heart icon">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-icon-button color="accent" matTooltip="Ver diseños" aria-label="Example icon-button with a heart icon">
+                        <button mat-icon-button color="accent" (click)="loadDesing(element)" matTooltip="Ver diseños"
+                            aria-label="Example icon-button with a heart icon">
                             <mat-icon>zoom_in</mat-icon>
                         </button>
-                        <button mat-icon-button color="warn" (click)= "deleteDraft(element)" matTooltip="Eliminar" aria-label="Example icon-button with a heart icon">
+                        <button mat-icon-button color="warn" data-toggle="modal" data-target="#exampleModal"
+                            (click)="setDraft(element)" matTooltip="Eliminar"
+                            aria-label="Example icon-button with a heart icon">
                             <mat-icon>clear</mat-icon>
                         </button>
                     </div>
@@ -74,7 +72,97 @@
     </div>
 
 
+  
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="alert alert-danger" role="alert">
+                        Adevertencia! <h5> Esta seguro que desea eliminar este proyecto </h5>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4> Una vez borrado no podra recuperar los diseños asociados a este proyecto</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="setDraftNull()"
+                        data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"
+                        (click)="deleteDraft()">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+    <div style="width: 100%; height: 100%;" *ngIf="viewDesin">
+        <hr>
+        <button mat-fab matTooltip="Atras" (click)="showDraft()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <br>
+        <h1 style="color: rgb(52, 58, 64)">{{draftActually.nameDraft}}</h1>
+        
+        <div class="alert alert-warning" *ngIf="existDesing" role="alert">
+            <h2 class="text-center"> No hay diseños disponibles, pronto llegaran </h2>
+        </div>
+
+        <div *ngIf="isloadDesing">
+                <h4 style="color: rgb(52, 58, 64)">Lista de diseños subidos</h4>
+            <mat-paginator [length]="lengthData" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+                (page)="pageEvent = $event" (click)="setDataSourceDesing()">
+            </mat-paginator>
+
+            <table mat-table [dataSource]="dataSourceDesing" class="mat-elevation-z8  fontTable">
+                           
+                <ng-container matColumnDef="idDesing">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.idDesing}} </td>
+                </ng-container>
+
+                 <ng-container matColumnDef="nameDesigner">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nameDesigner}} {{element.lastNameDesigner}} </td>
+                </ng-container>
+
+               <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef> Correo </th>
+                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                </ng-container>
+
+               
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                    <td mat-cell *matCellDef="let element"> {{element.date | date}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="state">
+                        <th mat-header-cell *matHeaderCellDef> Estado </th>
+                        <td mat-cell *matCellDef="let element"> {{getState(element.state)}} </td>
+                    </ng-container>
+
+               
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef> Opciones </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="group">
+                            <button mat-icon-button color="primary" matTooltip="Visualizar" *ngIf="element.state === 'D'">
+                                <mat-icon>photo</mat-icon>
+                            </button>
+                       </div>
+                    </td>
+
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsDesing"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsDesing;"></tr>
+            </table>
+        </div>
+
+    </div>
 
 </div>
