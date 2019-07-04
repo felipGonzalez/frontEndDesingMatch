@@ -1,0 +1,106 @@
+ a, button{
+    font-family: 'Roboto Slab', serif;
+  }
+
+  .blog {
+      margin: 10px;
+  }
+
+  h1{
+    font-family: 'Dancing Script', cursive;
+  }
+
+  .body {
+    width: 100%;
+    height: auto;
+    background: black;
+  }
+
+  .divNav {
+    background: black;
+    color: white;
+  }
+
+  .divImg{
+    margin-top: 50px;
+    height: auto;
+  }
+  .divText,h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   color: white;
+   font-size: 80px;;
+   font-family: 'Dancing Script', cursive;
+   margin: 100px;
+  }
+
+  .container{
+   margin-top: 20px;
+  }
+
+  .divContainer{
+    width: 100%;
+  }
+
+  .imgService {
+    width: 100px;
+    height: 100px;
+  }
+
+  .divAbout{
+    background: rgb(233, 97, 73);
+    width: 100%px;
+    height: auto;
+    padding-top: 10px;
+    color: white;
+    font-size: 30px;
+    font-family: 'Roboto Slab', serif;
+  }
+
+  .pService {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+  }
+
+   @media (max-width: 576px) { 
+    .gifImg {
+      width: 400px;
+      height: 400px;
+    }
+    .divText,h2{
+     font-size: 60px;;
+     margin: 60px;
+    }
+   }
+@media (max-width: 768px) { 
+  .gifImg {
+    width: 400px;
+    height: 400px;
+  }
+  .divText,h2{
+   font-size: 60px;;
+   margin: 60px;
+  }
+ }
+@media (max-width: 992px) { 
+  .gifImg {
+    width: 400px;
+    height: 400px;
+  }
+  .divText,h2{
+  font-size: 60px;;
+   margin: 60px;
+  }
+ }
+@media (max-width: 1200px) { 
+  .gifImg {
+    width: 400px;
+    height: 400px;
+  }
+  .divText,h2{
+  font-size: 60px;;
+   margin: 60px;
+  }
+ }
+

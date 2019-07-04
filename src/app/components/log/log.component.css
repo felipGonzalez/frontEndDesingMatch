@@ -1,0 +1,81 @@
+.header {
+    background-color: rgb(233, 230, 223);
+}
+
+.btn-div{
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  
+  .clear{
+    margin: 15px;
+  }
+  
+  .required{
+  color: red;
+  font-weight: bolder;
+  }
+  
+  .btn-div{
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  
+  .btn{
+    margin: 10px;
+  }
+  
+  .main-form{
+    margin: 0 auto;
+    width: 50%;
+  }
+  
+  .form-group{
+    min-width: 150px;
+    max-width: 800px;
+    width: 100%;
+  
+  }
+  
+  .matInput{
+    width: 100%;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 20px;
+    width: 100%;
+  }
+  
+  .link {
+      margin-top: 10px;
+  }
+  
+  .mat-raised-button {
+      height: 40px;
+      font-size: 20px;
+      
+  }
+
+  h3{
+    font-family: 'Dancing Script', cursive;
+  }
+
+  h2{
+    font-family: 'Barriecito', cursive;
+    color: rgb(36, 64, 61);
+  }
+
+  h4, input{
+    font-family: 'Roboto Slab', serif;
+    font-size: 30px;
+  }
+
+  input{
+      background: rgb(237, 237, 237);
+      border-radius: 10px;
+      height: 40px;
+  }

@@ -1,0 +1,156 @@
+<div class="container">
+    <div class="header">
+        <div class="row ">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="font-italic">DesingMatch</h3>
+                    </div>
+                    <div class="col-12">
+                        <h2>Redecora tu mundo</h2>
+                        <h2>Top en diseños &</h2>
+                        <h2>Creativos</h2>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-6">
+                <img src="/assets/img/avez.jpg" alt="" srcset="" style="height: 200px; width: 250px;">
+            </div>
+        </div>
+
+    </div>
+
+    <form action="/action_page.php"  *ngIf="flag">
+        <div class="log" >
+                <div class="alert alert-danger" role="alert" *ngIf="!isCorrect">
+                      {{message}}
+                </div>
+            <div class="form-group">
+                <h4>Correo</h4>
+                <mat-form-field class="full-width">
+                    <input matInput #email maxlength="50" placeholder="Ingrese su correo electrónico"
+                        [formControl]="emailFormControl" [(ngModel)]="company.email" name="email">
+                    <mat-hint align="end">{{ email.value.length }} / 50</mat-hint>
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                        Por favor ingrese un correo valido
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                        El correo es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+    
+            <div class="form-group">
+                <h4>Contraseña</h4>
+                <mat-form-field class="full-width">
+                    <input matInput type="password" #password placeholder="Ingrese su Contraseña"
+                        [formControl]="passworFormControl" [(ngModel)]="company.password" name="password">
+    
+                    <mat-error *ngIf="passworFormControl.hasError('password') && !passworFormControl.hasError('required')">
+                        Por favor ingrese una contraseña valida
+                    </mat-error>
+                    <mat-error *ngIf="passworFormControl.hasError('required')">
+                        La contraseña es <strong>requerida</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+    
+            <button type="submit" class="btn-lg btn-block" mat-raised-button color="accent" (click) = "loadCompany()">Ingresar</button>
+            <hr>
+            <br>
+                
+        </div>
+    </form>
+
+    
+
+
+    <form action="/action_page.php" *ngIf="!flag">
+        <div class="alert alert-danger" role="alert" *ngIf="!isCorrect">
+                {{message}}
+          </div>
+        <div class="log" >
+
+            <div *ngIf="!isOk">
+
+           
+
+            <div class="form-group">
+                <h4>Correo</h4>
+                <mat-form-field class="full-width">
+                    <input matInput #email maxlength="50" placeholder="Ingrese su correo electrónico"
+                        [formControl]="emailFormControl" [(ngModel)]="company.email" name="email">
+                    <mat-hint align="end">{{ email.value.length }} / 50</mat-hint>
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                        Por favor ingrese un correo valido
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                        El correo es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+    
+            <div class="form-group">
+                <h4>Contraseña</h4>
+                <mat-form-field class="full-width">
+                    <input matInput type="password" #password placeholder="Ingrese su Contraseña"
+                        [formControl]="passworFormControl" [(ngModel)]="company.password" name="password">
+    
+                    <mat-error *ngIf="passworFormControl.hasError('password') && !passworFormControl.hasError('required')">
+                        Por favor ingrese una contraseña valida
+                    </mat-error>
+                    <mat-error *ngIf="passworFormControl.hasError('required')">
+                        La contraseña es <strong>requerida</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <div class="form-group">
+                <label for="name"><b>
+                        <h4>Nombre de la compañia</h4>
+                    </b>
+                </label>
+                <mat-form-field class="full-width">
+                    <input matInput #name maxlength="30" id="name" placeholder="Ingrese el nombre"
+                        [formControl]="nameFormControl" [(ngModel)]="company.nameCompany"/>
+                    <mat-hint align="end">{{ name.value.length }} / 30</mat-hint>
+                    <mat-error *ngIf="
+                        nameFormControl.hasError('maxLength') &&
+                          !nameFormControl.hasError('required')
+                        ">
+                        Por favor ingrese un nombre valido
+                    </mat-error>
+                    <mat-error *ngIf="nameFormControl.hasError('required')">
+                        El nombre es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <button type="submit" class="btn-lg btn-block" mat-raised-button color="accent" (click) = "saveCompany()">Registrarme</button>
+            <hr>
+            <br>
+        </div>
+    </div>
+    </form>
+
+    <div *ngIf="isOk">
+
+            <div class="alert alert-success" role="alert">
+                    Compañia agregada exitosamente
+            </div>
+            <div class="alert alert-info" role="alert">
+                   Su URL de acceso es http://localhost:4200/{{company.urlCompany}}
+            </div>
+
+            <button type="submit" class="btn-lg btn-block" mat-raised-button color="accent" (click) = "redirect()">Ir Ahora</button>
+
+    </div>
+
+   
+
+
+
+</div>

@@ -1,0 +1,46 @@
+.divContainer{
+    width: 100%;
+  }
+
+  .divContainer2 {
+    width: 90%;
+    margin: auto;
+  }
+
+  
+
+  
+  .divNav {
+    background: black;
+    color: white;
+  }
+
+  .divNavCard {
+    background: rgb(233, 97, 73);
+    color: white;
+  }
+
+  h1{
+    font-family: 'Dancing Script', cursive;
+    font-size: 80px;
+  }
+
+  .btFont {
+      font-size: 30px
+  }
+
+  a, button{
+    font-family: 'Roboto Slab', serif;
+  }
+
+  h5 {
+    margin-top: 25px;
+   
+  }
+
+  .divDraft {
+    width: 100%;
+    height: 300px;
+    font-family: 'Roboto Slab', serif;
+    font-size: 30px
+  }

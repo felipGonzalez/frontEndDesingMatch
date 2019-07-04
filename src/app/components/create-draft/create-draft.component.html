@@ -1,0 +1,102 @@
+<div class="container">
+  <div class="row bg bg-dark head">
+    <div class="col-sm-12 col-md-8">
+      <h1>{{company.nameCompany}}</h1>
+    </div>
+    <div class="col-sm-12 col-md-4"><button class="btn btn-outline-success btn-lg btn-block "
+        (click)="closeSesion()">Cerrar Sesión</button></div>
+  </div>
+
+  <h2 class="title">Crear Proyecto</h2>
+
+  <form action="/action_page.php" class="main-form">
+    <div *ngIf="!valid" class="alert alert-danger" role="alert">
+      <strong>Tenemos un error!</strong> {{ message }}
+    </div>
+
+    <div class="form-group">
+      <label for="firstName"><b>
+          <h4>Nombre Del proyecto</h4>
+        </b>
+      </label>
+      <mat-form-field class="full-width">
+        <input matInput #name maxlength="30" id="name" placeholder="Ingrese el nombre" [formControl]="nameFormControl"
+          [(ngModel)]="draft.nameDraft"/>
+        <mat-hint align="end">{{ name.value.length }} / 30</mat-hint>
+        <mat-error *ngIf="
+                    nameFormControl.hasError('maxLength') &&
+                      !nameFormControl.hasError('required')
+                    ">
+          Por favor ingrese un nombre valido
+        </mat-error>
+        <mat-error *ngIf="nameFormControl.hasError('required')">
+          El nombre es <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group">
+      <label for="description"><b>
+          <h4>Descripcion del proyecto </h4>
+        </b>
+      </label>
+      <mat-form-field class="full-width">
+        <input matInput #descript maxlength="255" id="description" placeholder="Ingrese la descripcion del proyecto"
+          [formControl]="descriptionFormControl" [(ngModel)]="draft.description"/>
+        <mat-hint align="end">{{ descript.value.length }} / 255</mat-hint>
+        <mat-error *ngIf="
+                    descriptionFormControl.hasError('maxLength') &&
+                      !descriptionFormControl.hasError('required')
+                    ">
+          Por favor ingrese una descripcion valida
+        </mat-error>
+        <mat-error *ngIf="descriptionFormControl.hasError('required')">
+          La descripcion es <strong>requerida</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <label for="document"><b>
+          <h4>Precio </h4>
+        </b>
+      </label>
+      <mat-form-field class="full-width">
+        <input type="number" matInput #price maxlength="10" id="document" placeholder="Ingrese el precio del proyecto"
+          [formControl]="priceFormControl" [(ngModel)]="draft.price"/>
+        <mat-hint align="end">{{ price.value.length }} / 10</mat-hint>
+        <mat-error *ngIf="
+                    priceFormControl.hasError('maxLength') &&
+                      !priceFormControl.hasError('required')
+                    ">
+          Por favor ingrese un precio valido
+        </mat-error>
+        <mat-error *ngIf="priceFormControl.hasError('required')">
+          El precio es <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+
+
+    <hr>
+    <div class="row btn-div">
+      <div class="col-xl-6 text-center">
+        <button type="submit" class="btn btn-primary btn-block btn-save" (click)="saveOrUpdate()">
+          Guardar
+        </button>
+      </div>
+      <div class="col-xl-6 text-center">
+        <button type="button" (click) = "cancel()"class="btn btn-success btn-block">
+          Cancelar
+        </button>
+      </div>
+    </div>
+
+
+  </form>
+
+
+
+</div>

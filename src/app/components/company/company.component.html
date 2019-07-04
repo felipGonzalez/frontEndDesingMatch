@@ -1,0 +1,85 @@
+<div class="container" *ngIf="existError">
+        <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">Ocurrio un error!</h4>
+                <p>La pagina no existe</p>
+                <hr>
+                <p class="mb-0">Consulte con su administrador la url de acceso</p>
+              </div>
+</div>
+
+<div class="divContainer" *ngIf="isOk">
+    <nav class="navbar navbar-dark  navbar-expand-lg divNav">
+        <a class="navbar-brand" href="#">
+          <h1>{{company.nameCompany | uppercase}}</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto ">
+                                      </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0 blog btFont" (click)="openModal(true)">Iniciar sesión</button>
+          </form>
+        </div>
+      </nav>
+</div>
+
+<div class="container" *ngIf="notLoadDrafts">
+  <div class="alert alert-info" role="alert">
+          <h4 class="alert-heading">Aviso!</h4>
+          <p>No hay proyectos agregados</p>
+          <hr>
+          <p class="mb-0">Pronto publicaremos proyectos</p>
+        </div>
+</div>
+
+<div class="divContainer2" *ngIf="viewDraft">
+    <br>
+    <div class="row">
+      <div class="col-6">
+        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="viewListDrafts()">Proyectos</button>
+          
+      </div>
+      <div class="col-6">
+        <button type="button" class="btn btn-secondary btn-lg btn-block">Subir diseño</button>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-xs-6" *ngFor="let desing of listDesing">
+           
+            <div class="p-3 mb-2 bg-info text-white"  style="margin-top: 10px;"> <h6 class="text-center">Diseño {{draftActually.nameDraft}}{{desing.idDesing}} -  {{desing.date | date}}</h6></div>
+            <img [src]="getUrl(desing.urlImgOriginal)" class="divDraft" alt="" srcset="">
+            
+       </div>
+    </div>
+
+    <div class="container" *ngIf="existDesing">
+      <div class="alert alert-info" role="alert">
+              <h4 class="alert-heading">Aviso!</h4>
+              <p>No hay Diseños publicados para este proyecto</p>
+              <hr>
+              <p class="mb-0">Se el primero en publicar tu idea</p>
+            </div>
+    </div>
+    
+
+  </div>
+
+<div class="divContainer2" *ngIf="loadDrafts">
+  <h1>Lista de proyectos</h1>
+  <div class="row text-center">
+    <div class="col-lg-3 col-md-4 col-xs-6" *ngFor="let draft of listDraft">
+     
+      <button type="button" class="btn btn-outline-dark divDraft" (click)="loadDesing(draft)">{{draft.nameDraft}}</button>
+ </div>
+</div>
+
+
+
+
+
+
+
