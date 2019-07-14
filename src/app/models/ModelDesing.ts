@@ -10,5 +10,6 @@ export class ModelDesing {
 	public  lastNameDesigner : string;
     public  email;
 	public date: Date;
+	public nameCompany: string;
 
 }

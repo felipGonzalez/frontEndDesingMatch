@@ -7,6 +7,8 @@ import { CompanyService } from './company.service';
 import { ModelCompany } from 'src/app/models/ModelCompany';
 import { ModelDraft } from 'src/app/models/ModelDraft';
 import { ModelDesing } from 'src/app/models/ModelDesing';
+import { DesingService } from '../desing/desing.service';
+import { DesingComponent } from '../desing/desing.component';
 
 @Component({
   selector: 'app-company',
@@ -95,6 +97,7 @@ export class CompanyComponent implements OnInit {
           this.setViewDraft();
         }else {
           this.isloadDesing = true;
+          this.existDesing = false;
           this.setViewDraft();
         }
       }, err => {
@@ -113,8 +116,21 @@ export class CompanyComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-     
+      
     });
+  }
+
+  openModalDesing() { 
+    const dialogRef = this.dialog.open(DesingComponent, {
+      width: "1000px",
+      data : {draft : this.draftActually, company: this.company},
+      autoFocus : true,
+      panelClass: 'myapp-modal'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadDesing(this.draftActually);
+     });
   }
 
   public setViewDraft() {
@@ -134,5 +150,12 @@ export class CompanyComponent implements OnInit {
    }
 
 
+   public getClass() {
+     var list = ['btn-outline-primary','btn-outline-secondary','btn-outline-success','btn-outline-danger','btn-outline-warning','btn-outline-info','btn-outline-dark'];
+     var random = Math.floor(Math.random()*(list.length));
+     var classColor = 'btn  divDraft ' + list[random];
+     return classColor;
+   }
+   
 
 }

@@ -3,11 +3,12 @@ import { ModelCompany } from 'src/app/models/ModelCompany';
 import { Router } from '@angular/router';
 import { CompanyService } from './company.service';
 import { ModelDraft } from 'src/app/models/ModelDraft';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatDialog } from '@angular/material';
 import { OK } from 'src/app/models/httpStatus';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ModelDesing } from 'src/app/models/ModelDesing';
 import {PageEvent} from '@angular/material/paginator';
+import { DesingModalComponent } from '../desing-modal/desing-modal.component';
 
 
 @Component({
@@ -47,7 +48,7 @@ export class AdminCompanyComponent implements OnInit {
    displayedColumns: string[] = ['idDraft', 'nameDraft', 'price', 'action'];
    displayedColumnsDesing: string[] = ['idDesing', 'nameDesigner', 'email','date','state', 'action'];
 
-  constructor(private router: Router, private companyServe: CompanyService, private _snackBar: MatSnackBar) {
+  constructor(private router: Router, private companyServe: CompanyService, private _snackBar: MatSnackBar, private dialog: MatDialog) {
     if (sessionStorage.getItem('company')) {
       this.company = JSON.parse(sessionStorage.getItem('company'));
     } else {
@@ -197,6 +198,30 @@ export class AdminCompanyComponent implements OnInit {
   public getState(state:string):string {
     return state === 'D' ? 'Disponible' : 'Procesando';
   }
+
+  openModal(url:string) { 
+
+    console.log(this.getUrl(url));
+    
+
+    const dialogRef = this.dialog.open(DesingModalComponent, {
+      width: "900px",
+      height: "750px",
+      data :  `http://localhost:8080/desing/getImageFinal?data=${this.company.urlCompany}&data=${this.draftActually.idDraft}&data=${url}`,
+      autoFocus : false,
+      panelClass: 'myapp-modal'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+     
+    });
+  }
+ 
+  public  getUrl(url:string):string{
+   
+    return  `http://localhost:8080/desing/getImageDesing?data=${this.company.urlCompany}&data=${this.draftActually.idDraft}&data=${url}`;
+   }
+
 
 }
 

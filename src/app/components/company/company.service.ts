@@ -31,7 +31,7 @@ export class CompanyService {
   }
 
   public getListDesing(id:number): Observable<ModelDesing[]> {
-    return this.http.get<ModelDesing[]>(HTTP_URL+`/desing/`+id);
+    return this.http.get<ModelDesing[]>(HTTP_URL+`/desing/DesdingAvailable/`+id);
   }
 
 

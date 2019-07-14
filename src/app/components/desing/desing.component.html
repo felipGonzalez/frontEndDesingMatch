@@ -1,1 +1,156 @@
-<p>desing works!</p>
+<div class="container">
+
+    
+    
+      <div class="row">
+          <div class="col-11">
+            <h1>Proyecto : {{draft.nameDraft}}</h1>
+          </div>
+          <div class="col-1">
+            <button mat-icon-button (click) = "closeDialog()">
+                <mat-icon>close</mat-icon>
+              </button>
+          </div>
+      </div>
+    <hr>
+    <form action="/action_page.php">
+
+        <div class="row">
+            <div class="col-md-12 col-lg-6">
+                <div class="form-group">
+                    <label for="name"><b>
+                            <h4>Nombre</h4>
+                    </b>
+                    </label>
+                    <mat-form-field class="full-width">
+                        <input matInput #name maxlength="60" id="name" placeholder="Ingrese su nombre"
+                            [formControl]="nameFormControl" [(ngModel)]="desing.nameDesigner"/>
+                        <mat-hint align="end">{{ name.value.length }} / 60</mat-hint>
+                        <mat-error *ngIf="
+                            nameFormControl.hasError('maxLength') &&
+                              !nameFormControl.hasError('required')
+                            ">
+                            Por favor ingrese un nombre valido
+                        </mat-error>
+                        <mat-error *ngIf="nameFormControl.hasError('required')">
+                            El nombre es <strong>requerido</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+                <div class="form-group">
+                    <label for="name"><b>
+                            <h4>Apellido</h4>
+                        </b>
+                    </label>
+                    <mat-form-field class="full-width">
+                        <input matInput #lastName maxlength="60" id="name" placeholder="Ingrese sus apellidos"
+                            [formControl]="lastNameFormControl" [(ngModel)]="desing.lastNameDesigner"/>
+                        <mat-hint align="end">{{ lastName.value.length }} / 60</mat-hint>
+                        <mat-error *ngIf="
+                        lastNameFormControl.hasError('maxLength') &&
+                              !lastNameFormControl.hasError('required')
+                            ">
+                            Por favor ingrese un Apellido valido
+                        </mat-error>
+                        <mat-error *ngIf="lastNameFormControl.hasError('required')">
+                            El Apellido es <strong>requerido</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <div class="col-md-12 col-lg-6">
+                <div class="form-group">
+                    <h4>Correo</h4>
+                    <mat-form-field class="full-width">
+                        <input matInput #email maxlength="50" placeholder="Ingrese su correo electrónico"
+                            [formControl]="emailFormControl" [(ngModel)]="desing.email" name="email">
+                        <mat-hint align="end">{{ email.value.length }} / 50</mat-hint>
+                        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                            Por favor ingrese un correo valido
+                        </mat-error>
+                        <mat-error *ngIf="emailFormControl.hasError('required')">
+                            El correo es <strong>requerido</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-6">
+                <div class="form-group">
+                    <label for="document"><b>
+                        <h4>Precio </h4>
+                      </b>
+                    </label>
+                    <mat-form-field class="full-width">
+                      <input type="number" matInput #price maxlength="10" id="document" placeholder="Ingrese el precio del proyecto"
+                        [formControl]="priceFormControl" [(ngModel)]="desing.value"/>
+                      <mat-hint align="end">{{ price.value.length }} / 10</mat-hint>
+                      <mat-error *ngIf="
+                                  priceFormControl.hasError('maxLength') &&
+                                    !priceFormControl.hasError('required')
+                                  ">
+                        Por favor ingrese un precio valido
+                      </mat-error>
+                      <mat-error *ngIf="priceFormControl.hasError('required')">
+                        El precio es <strong>requerido</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="form-group">
+            <label for="inputImage">Diseño</label>
+            
+            <input #file type="file" class="form-control-file" accept='image/*' id="inputImage" (change)="preview(file.files)">
+            <span style="color:red;" *ngIf="message">{{message}} </span>
+            <span style="color:red;" *ngIf="!isCorrect"> Por favor seleccione un diseño</span>
+          </div>
+          <div class="d-flex justify-content-center" *ngIf="sendDesing"><h4>Enviando diseño, espere un momento por favor</h4></div>
+          <div class="d-flex justify-content-center" *ngIf="sendDesing">
+                <div class="spinner-grow text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-secondary" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-success" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-danger" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-warning" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-info" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-light" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-dark" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+          </div>
+
+        <div class="d-flex justify-content-center" *ngIf="!sendDesing">
+            
+    <button type="submit" class="btn-lg btnSend" mat-raised-button color="accent"  (click) = "checkDesing()">Enviar diseño</button>
+</div>
+         
+
+  
+
+    </form>
+
+
+</div>

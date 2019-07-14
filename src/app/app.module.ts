@@ -29,6 +29,8 @@ import { AdminCompanyComponent } from './components/admin-company/admin-company.
 import { CreateDraftComponent } from './components/create-draft/create-draft.component';
 import { CompanyComponent } from './components/company/company.component';
 import { DesingComponent } from './components/desing/desing.component';
+import { DesingModalComponent } from './components/desing-modal/desing-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -38,8 +40,9 @@ import { DesingComponent } from './components/desing/desing.component';
     AdminCompanyComponent,
     CreateDraftComponent,
     CompanyComponent,
-    DesingComponent
-  ],
+    DesingComponent,
+    DesingModalComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -95,6 +98,6 @@ import { DesingComponent } from './components/desing/desing.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[LogComponent, DesingComponent]
+  entryComponents:[LogComponent, DesingComponent,  DesingModalComponent]
 })
 export class AppModule { }
