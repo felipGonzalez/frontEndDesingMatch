@@ -34,17 +34,17 @@ export class LogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<LogComponent>,
     @Inject(MAT_DIALOG_DATA) public flag: boolean, private logService: LogService, private router:Router) { 
-    this.initCompany();
-    this.isCorrect = true;
+      this.company = new ModelCompany();
+      this.isCorrect = true;
     }
 
   ngOnInit() {
   }
 
   public initCompany() {
-    this.company = new ModelCompany();
+    
     this.company.email = "uptc@uptc.edu.co";
-    this.company.password = "123456";
+    this.company.password = "asd";
   }
 
   public changeDiv() {

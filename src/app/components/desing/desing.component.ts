@@ -49,10 +49,6 @@ export class DesingComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DesingComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private serve:DesingService, private _snackBar: MatSnackBar) {
       this.desing = new ModelDesing();
-     this.desing.nameDesigner = "sadsa";
-      this.desing.lastNameDesigner = "sadsa";
-      this.desing.email = "sadsa@asd.com";
-      this.desing.value = 100000;
       this.isCorrect = true;
       this.draft = data.draft;
       this.company = data.company;
@@ -87,7 +83,7 @@ export class DesingComponent implements OnInit {
     this.desing.urlImgConvert = "";
     this.desing.state = "P" 
     this.desing.nameCompany = this.company.urlCompany;
-    
+
     console.log(this.desing);
     this.serve.saveDesing(this.file,this.desing,this.company.urlCompany).subscribe( res => {
       console.log(res);

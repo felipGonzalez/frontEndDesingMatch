@@ -142,7 +142,7 @@ export class AdminCompanyComponent implements OnInit {
   public setDataSourceDesing() {
     if(this.pageEvent !== undefined) {
       this.pageIndex = this.pageEvent.pageIndex;
-      this.pageSize = this.pageEvent.pageSize;
+      this.pageSize = this.pageEvent.pageSize; 
      }
     this.createDataSource();
  
